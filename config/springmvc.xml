@@ -16,20 +16,31 @@
 	<!-- 配置handle -->
 	<bean id="ItemsController1" name="/queryItems.action" class="cn.itcast.ssm.controller.ItemsController1"></bean>
 	
-		
+	<bean id="ItemsController2" class="cn.itcast.ssm.controller.ItemsController2"></bean>
+	
 	<!-- 配置映射器 将bean的name作为url进行查找，需要在配置handle时指定beanname（就是url）
 		所有的营映射器都实现了HandlerMapping接口
 	 -->
 	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
 	
+	<!-- 另外一个映射器，多个映射器可以并存，前端控制器判断url能让哪些映射器映射，就让正确的映射器处理。 -->
+	<!-- simpleUrlHandlerMapping是BeanNameUrlHandlerMapping的增强版本，它可以将url和处理器bean的id进行统一映射配置。 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/items1.action">ItemsController1</prop>
+				<prop key="/items2.action">ItemsController1</prop>
+				<prop key="/items3.action">ItemsController2</prop>
+			</props>
+		</property>
+	</bean>
 	
-	
-	 
 	
 	<!-- 配置适配器    所有的处理器适配器都实现了HandlerAdapter接口-->
 	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/> 
 	
-	
+	<!-- 另外一个适配器，HttpRequestHandlerAdapter，http请求处理器适配器，所有实现了org.springframework.web.HttpRequestHandler 接口的Bean通过此适配器进行适配、执行 -->
+	<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
 	
 	<!-- 配置视图解析器 解析jsp视图，默认使用jstl标签，classpath下得有jstl包 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"></bean>
