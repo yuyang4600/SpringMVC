@@ -38,7 +38,7 @@ public class ItemsController3 {
 	
 	//Ïàµ±ÓÚsetAttribute
 	modelAndView.addObject("itemsList", itemsList);
-	modelAndView.setViewName("/WEB-INF/jsp/Items/itemsList.jsp");
+	modelAndView.setViewName("/Items/itemsList");
 	
 	return modelAndView;
 	} 

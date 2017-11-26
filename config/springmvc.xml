@@ -60,14 +60,17 @@
 	
 	<!--注解适配器   注解式处理器适配器，对标记@ResquestMapping的方法进行适配。 -->
 	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
-	
-	
-<!--==================================================================================================================================================================================================================================== -->
 	<!-- springmvc使用<mvc:annotation-driven>自动加载RequestMappingHandlerMapping和RequestMappingHandlerAdapter，可用在springmvc.xml配置文件中使用<mvc:annotation-driven>替代注解处理器和适配器的配置。 -->
 	<!-- <mvc:annotation-driven></mvc:annotation-driven> -->
 	
+<!--==================================================================================================================================================================================================================================== -->
+	
+	
 	<!-- 配置视图解析器 解析jsp视图，默认使用jstl标签，classpath下得有jstl包 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"></bean>
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/jsp/"/>
+	<property name="suffix" value=".jsp"/>
+	</bean>
 	
 	
 </beans>
